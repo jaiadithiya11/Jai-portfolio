@@ -45,7 +45,7 @@ export default function ProjectItem({
             >
               <MdInsertLink className="text-2xl" />
               <span className="hidden sm:inline">{linkLinkText}</span>
-              <span className="sm:hidden">Live Demo</span>
+              <span className="sm:hidden">Project-Report</span>
             </a>
 
             <a
@@ -55,7 +55,7 @@ export default function ProjectItem({
               className="text-base font-medium underline hover:text-primary transition"
             >
               <span className="hidden sm:inline">{githubText}</span>
-              <span className="sm:hidden">GitHub</span>
+              <span className="sm:hidden"></span>
             </a>
           </div>
         </div>
