@@ -35,7 +35,7 @@ const projectData = [
    image: project1Image,
     heading: "Secure Multi-AZ Web Application Deployment with Private Backend on AWS",
     desc: "Deployed a scalable web application in AWS using a VPC with public web servers and private backend servers across multiple Availability Zones. Implemented Elastic Load Balancer for traffic distribution, Auto Scaling for demand-based scaling, EFS/EBS for shared and persistent storage, and IAM for secure access, ensuring high availability and strong security.",
-    liveLink: "https://drive.google.com/file/d/14LaFV5WDvEnHLW-tHidKM3BWjF7Q-_Vx/view?usp=sharing",
+    liveLink: "https://drive.google.com/file/d/1_WvmprUHY8Xhv9IF2m530EShTFdLhPr5/view?usp=sharing",
     linkLinkText: "Multi-AZ Web Application Deployment Report",
     isScrollAble: false,
   },
