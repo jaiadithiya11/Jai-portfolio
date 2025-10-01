@@ -15,10 +15,9 @@ export default function Form() {
     message: "",
   });
 
-  // ✅ Validation
-  const checkValidData = () => {
+  const checkValidData = function () {
+    // For Email
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     if (!emailPattern.test(details.email)) {
       return {
         status: false,
@@ -26,31 +25,44 @@ export default function Form() {
       };
     }
 
+    // For Name
     const trimmedName = details.name.trim();
     if (trimmedName.length < 1) {
-      return { status: false, errorMsg: "Name should not be empty" };
+      return {
+        status: false,
+        errorMsg: "Name should not be empty",
+      };
     }
     if (trimmedName.length > 30) {
-      return { status: false, errorMsg: "Name should be less than 30 characters" };
+      return {
+        status: false,
+        errorMsg: "Name should be less than 30 characters",
+      };
     }
 
+    // For Message
     const trimmedMsg = details.message.trim();
     if (trimmedMsg.length < 1) {
-      return { status: false, errorMsg: "Message should not be empty" };
+      return {
+        status: false,
+        errorMsg: "Message should not be empty",
+      };
     }
     if (trimmedMsg.length > 750) {
-      return { status: false, errorMsg: "Message should be less than 750 characters" };
+      return {
+        status: false,
+        errorMsg: "Message should be less than 750 characters",
+      };
     }
 
     return { status: true };
   };
 
-  const handleFormChange = (e) => {
+  const handleFormChange = function (e) {
     setDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  // ✅ Fixed form submit
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = function (e) {
     e.preventDefault();
 
     const isValidData = checkValidData();
@@ -64,20 +76,18 @@ export default function Form() {
         EMAILJSINFO.serviceId,
         EMAILJSINFO.templateId,
         {
-          from_name: details.name,   // 🔑 Match EmailJS template variables
-          from_email: details.email,
+          from_name: details.name,
+          reply_to: details.email,
           message: details.message,
         },
         EMAILJSINFO.publicKey
       ),
       {
         loading: "Sending Mail....",
-        success: "Mail Sent Successfully 🎉",
-        error: "Something Went Wrong 😢",
+        success: "Mail Sent Successfully ✅",
+        error: "Something Went Wrong ❌",
       }
-    ).catch((err) => {
-      console.error("EmailJS Error:", err);
-    });
+    );
   };
 
   return (
