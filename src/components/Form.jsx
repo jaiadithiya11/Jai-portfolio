@@ -15,58 +15,42 @@ export default function Form() {
     message: "",
   });
 
-  const checkValidData = function () {
-    // For Mail
+  // ✅ Validation
+  const checkValidData = () => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const gmailPattern = /^[^\s@]+@gmail\.com$/;
 
-    if (
-      !(emailPattern.test(details.email) || gmailPattern.test(details.email))
-    ) {
+    if (!emailPattern.test(details.email)) {
       return {
         status: false,
         errorMsg: "Enter a valid email address",
       };
     }
 
-    // For Name
     const trimmedName = details.name.trim();
     if (trimmedName.length < 1) {
-      return {
-        status: false,
-        errorMsg: "Name should not be empty",
-      };
+      return { status: false, errorMsg: "Name should not be empty" };
     }
     if (trimmedName.length > 30) {
-      return {
-        status: false,
-        errorMsg: "Name should be less than 30 characters",
-      };
+      return { status: false, errorMsg: "Name should be less than 30 characters" };
     }
 
-    // For Message
     const trimmedMsg = details.message.trim();
     if (trimmedMsg.length < 1) {
-      return {
-        status: false,
-        errorMsg: "Message should not be empty",
-      };
+      return { status: false, errorMsg: "Message should not be empty" };
     }
     if (trimmedMsg.length > 750) {
-      return {
-        status: false,
-        errorMsg: "Message should be less than 750 characters",
-      };
+      return { status: false, errorMsg: "Message should be less than 750 characters" };
     }
 
     return { status: true };
   };
 
-  const handleFormChange = function (e) {
+  const handleFormChange = (e) => {
     setDetails((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleFormSubmit = function (e) {
+  // ✅ Fixed form submit
+  const handleFormSubmit = (e) => {
     e.preventDefault();
 
     const isValidData = checkValidData();
@@ -79,25 +63,28 @@ export default function Form() {
       emailjs.send(
         EMAILJSINFO.serviceId,
         EMAILJSINFO.templateId,
-        details,
-        EMAILJSINFO.publicKey,
+        {
+          from_name: details.name,   // 🔑 Match EmailJS template variables
+          from_email: details.email,
+          message: details.message,
+        },
+        EMAILJSINFO.publicKey
       ),
       {
         loading: "Sending Mail....",
-        success: () => {
-          return toast.success("Mail Sent Successfully");
-        },
-        error: (error) => {
-          return toast.error("Something Went Wrong");
-        },
-      },
-    );
+        success: "Mail Sent Successfully 🎉",
+        error: "Something Went Wrong 😢",
+      }
+    ).catch((err) => {
+      console.error("EmailJS Error:", err);
+    });
   };
+
   return (
     <form className="flex flex-col gap-6" onSubmit={handleFormSubmit}>
       <div className="flex flex-col gap-4 sm:flex-row">
         <input
-          className="welcome-box rounded-md border border-[#7042f88b]  bg-transparent px-2.5 py-2 text-xl text-white outline-none focus:ring focus:ring-[#7347f943] sm:w-1/2"
+          className="welcome-box rounded-md border border-[#7042f88b] bg-transparent px-2.5 py-2 text-xl text-white outline-none focus:ring focus:ring-[#7347f943] sm:w-1/2"
           type="text"
           name="name"
           id="name"
@@ -106,7 +93,7 @@ export default function Form() {
           onChange={handleFormChange}
         />
         <input
-          className="welcome-box rounded-md border border-[#7042f88b]  bg-transparent px-2.5 py-2 text-xl text-white outline-none focus:ring focus:ring-[#7347f943] sm:w-1/2"
+          className="welcome-box rounded-md border border-[#7042f88b] bg-transparent px-2.5 py-2 text-xl text-white outline-none focus:ring focus:ring-[#7347f943] sm:w-1/2"
           type="email"
           name="email"
           id="email"
@@ -123,7 +110,7 @@ export default function Form() {
         value={details.message}
         onChange={handleFormChange}
       ></textarea>
-      <button className="button-primary rounded-md px-6 py-2  text-xl text-white transition-transform duration-75 active:scale-[.98]">
+      <button className="button-primary rounded-md px-6 py-2 text-xl text-white transition-transform duration-75 active:scale-[.98]">
         Send
       </button>
     </form>
