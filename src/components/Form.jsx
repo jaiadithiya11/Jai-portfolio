@@ -3,9 +3,9 @@ import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
 
 const EMAILJSINFO = {
-  serviceId: "sservice_orzujgd",   // replace with your real service ID
-  templateId: "tetemplate_vk4vw0d", // replace with your real template ID
-  publicKey: "zZBoQVTX_FwHvQRFM",  // replace with your real public key
+  serviceId: "sservice_orzujgd",   
+  templateId: "template_o8y4xc4", 
+  publicKey: "zZBoQVTX_FwHvQRFM",  
 };
 
 export default function Form() {
