@@ -3,9 +3,9 @@ import emailjs from "@emailjs/browser";
 import toast from "react-hot-toast";
 
 const EMAILJSINFO = {
-  serviceId: "sservice_orzujgd",
-  templateId: "tetemplate_vk4vw0d",
-  publicKey: "zZBoQVTX_FwHvQRFM",
+  serviceId: "sservice_orzujgd",   // replace with your real service ID
+  templateId: "tetemplate_vk4vw0d", // replace with your real template ID
+  publicKey: "zZBoQVTX_FwHvQRFM",  // replace with your real public key
 };
 
 export default function Form() {
@@ -16,43 +16,28 @@ export default function Form() {
   });
 
   const checkValidData = function () {
-    // For Email
+    // Email validation
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(details.email)) {
-      return {
-        status: false,
-        errorMsg: "Enter a valid email address",
-      };
+      return { status: false, errorMsg: "Enter a valid email address" };
     }
 
-    // For Name
+    // Name validation
     const trimmedName = details.name.trim();
     if (trimmedName.length < 1) {
-      return {
-        status: false,
-        errorMsg: "Name should not be empty",
-      };
+      return { status: false, errorMsg: "Name should not be empty" };
     }
     if (trimmedName.length > 30) {
-      return {
-        status: false,
-        errorMsg: "Name should be less than 30 characters",
-      };
+      return { status: false, errorMsg: "Name should be less than 30 characters" };
     }
 
-    // For Message
+    // Message validation
     const trimmedMsg = details.message.trim();
     if (trimmedMsg.length < 1) {
-      return {
-        status: false,
-        errorMsg: "Message should not be empty",
-      };
+      return { status: false, errorMsg: "Message should not be empty" };
     }
     if (trimmedMsg.length > 750) {
-      return {
-        status: false,
-        errorMsg: "Message should be less than 750 characters",
-      };
+      return { status: false, errorMsg: "Message should be less than 750 characters" };
     }
 
     return { status: true };
@@ -76,8 +61,9 @@ export default function Form() {
         EMAILJSINFO.serviceId,
         EMAILJSINFO.templateId,
         {
-          from_name: details.name,
-          reply_to: details.email,
+          title: "New Contact Request",
+          name: details.name,
+          email: details.email,  // 👈 now supported after you add {{email}} in template
           message: details.message,
         },
         EMAILJSINFO.publicKey
@@ -88,6 +74,9 @@ export default function Form() {
         error: "Something Went Wrong ❌",
       }
     );
+
+    // Reset form after sending
+    setDetails({ name: "", email: "", message: "" });
   };
 
   return (
