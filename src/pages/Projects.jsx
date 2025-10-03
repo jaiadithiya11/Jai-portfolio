@@ -1,7 +1,7 @@
 import ProjectItem from "../components/ProjectItem";
 import SectionHeading from "../ui/SectionHeading";
 
-import project1Image from "../assets/project-4.png";
+import project4Image from "../assets/project-4.png";
 import project0Image from "../assets/project-0.png";
 import project2Image from "../assets/project-img-1.png";
 import project3Image from "../assets/project-2.png";
@@ -32,11 +32,11 @@ const projectData = [
     isScrollAble: false,
   },
   {
-   image: project1Image,
-    heading: "Secure Multi-AZ Web Application Deployment with Private Backend on AWS",
+    image: project4Image,
+    heading: "AWS Multi-AZ Web App Deployment",
     desc: "Deployed a scalable web application in AWS using a VPC with public web servers and private backend servers across multiple Availability Zones. Implemented Elastic Load Balancer for traffic distribution, Auto Scaling for demand-based scaling, EFS/EBS for shared and persistent storage, and IAM for secure access, ensuring high availability and strong security.",
     liveLink: "https://drive.google.com/file/d/1_WvmprUHY8Xhv9IF2m530EShTFdLhPr5/view?usp=sharing",
-    linkLinkText: "Multi-AZ Web Application Deployment Report",
+    linkLinkText: "View Multi-AZ Web Application Deployment Report",
     isScrollAble: false,
   },
 ];

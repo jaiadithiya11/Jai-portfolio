@@ -13,18 +13,18 @@ export default function ProjectItem({
   return (
     <div className="border-tertiary bg-bg-secondary/50 nav-bar-1 flex flex-col overflow-hidden rounded-xl border p-4 shadow-md">
       <div className="flex flex-col gap-8 sm:flex-row">
-        
           {/* ✅ Project Image */}
-          <div className="relative w-full sm:w-96 max-w-full overflow-hidden rounded-xl">
-            <img
-              src={image}
-              alt="project image"
-              className={
-                "rounded-xl w-full h-48 object-cover object-center sm:h-64 sm:w-96 transition-transform duration-[1s] ease-in-out " +
-                (isScrollAble ? "hover:-translate-y-[77.5%]" : "")
-              }
-            />
-          </div>
+        <div className="relative w-full sm:w-96 aspect-[16/9] overflow-hidden rounded-xl">
+          <img
+            src={image}
+            alt={heading || "project image"}
+            className={
+              "w-full h-full object-cover object-center transition-transform duration-[1s] ease-in-out " +
+              (isScrollAble ? "hover:-translate-y-[77.5%]" : "")
+            }
+          />
+        </div>
+
         {/* ✅ Project Text */}
         <div className="flex flex-col gap-4">
           <h1 className="font-sen text-3xl sm:text-4xl text-white leading-tight">

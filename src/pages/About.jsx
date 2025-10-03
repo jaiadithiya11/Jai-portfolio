@@ -33,7 +33,7 @@ export default function About() {
         />
         <div className="flex gap-2">
           <a
-            href="https://drive.google.com/file/d/1dqu6cha8U-reAsYnL8D-cHAEcMrZf9KK/view?usp=sharing"
+            href="https://drive.google.com/file/d/1w05Rw1ZdW1B_RKGJG7XDBxbR6AOmVABw/view?usp=sharing"
             target="_blank"
             rel="noreferrer"
             className="welcome-box group flex-1 justify-center gap-2.5 rounded-md border border-[#7042f88b] px-2 py-1.5  text-xl font-bold opacity-90"
